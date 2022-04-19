@@ -1,4 +1,4 @@
-# TGRSS_Action
+# TGRSS
 
 [EN](README.md)/[ZH](README_zh.md)
 

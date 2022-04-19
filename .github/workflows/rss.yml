@@ -3,9 +3,8 @@ name: TGRSS_Action
 on:               
   schedule:                           
     - cron: '*/30 * * * *'
-  push:
-    branches:
-      - master
+  workflow_dispatch:
+
 jobs:
   rss:
     runs-on: ubuntu-latest
