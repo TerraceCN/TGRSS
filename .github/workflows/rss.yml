@@ -1,13 +1,13 @@
-name: RssPusher
+name: TGRSS_Action
 
 on:               
   schedule:                           
-    - cron: '0/30 * * * *'
+    - cron: '*/30 * * * *'
   push:
     branches:
       - master
 jobs:
-  build:
+  rss:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout codes
