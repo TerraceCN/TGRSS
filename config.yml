@@ -3,9 +3,15 @@ rss_groups:
     美团技术团队: https://tech.meituan.com/feed/
   知识: &knownledge
     知乎日报: https://www.zhihu.com/rss
+  IT: &it
+    36氪: https://36kr.com/feed
+  博客: &blog
+    月光博客: https://www.williamlong.info/rss.xml
+    阮一峰的网络日志: http://www.ruanyifeng.com/blog/atom.xml
 
 chat_ids:
   383054885:
     <<: *tech
     <<: *knownledge
-    月光博客: https://www.williamlong.info/rss.xml
+    <<: *it
+    <<: *blog
