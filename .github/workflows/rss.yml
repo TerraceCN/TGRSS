@@ -1,0 +1,35 @@
+name: RssPusher
+
+on:               
+  schedule:                           
+    - cron: '0/30 * * * *'
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout codes
+      uses: actions/checkout@v2
+    - name: Set up Python 3.7.6
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.7.6
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+    - name: Process RSS
+      env:
+        TELEGRAM_KEYS: ${{ secrets.TELEGRAM_TOKEN }}
+      run: python main.py
+    - name: Commit
+      run: |
+        git config --global user.email action@example.org
+        git config --global user.name Action
+        git add database.json
+        git commit -m "update the database" -a
+    - name: Push changes
+      uses: ad-m/github-push-action@master 
+      with:
+        branch: master
+        github_token: ${{ secrets.GITHUB_TOKEN }}
