@@ -16,13 +16,19 @@ def get_feeds(url: str) -> list:
     resp.raise_for_status()
     xml = etree.fromstring(resp.content)
     feeds = []
-    for item in xml.xpath("//item"):
+
+    item_tags = ["item", "entry"]
+    items = []
+    for item_tag in item_tags:
+        items = xml.xpath(f"//{item_tag}")
+        if len(items) != 0:
+            break
+    
+    for item in items:
         title = item.xpath("title")[0].text
-        desc = item.xpath("description")[0].text
         link = item.xpath("link")[0].text
         feeds.append({
             "title": title,
-            "desc": desc,
             "link": link,
         })
     return feeds
