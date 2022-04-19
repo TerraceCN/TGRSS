@@ -21,6 +21,9 @@ jobs:
     - name: Process RSS
       env:
         TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+        HTTP_PROXY: ''
+        HTTPS_PROXY: ''
+        SSL_VERIFY: 'true'
       run: python main.py
     - name: Commit
       run: |
@@ -28,6 +31,7 @@ jobs:
         git config --global user.name Action
         git add database.json
         git commit -m "update the database" -a
+      continue-on-error: true
     - name: Push changes
       uses: ad-m/github-push-action@master 
       with:

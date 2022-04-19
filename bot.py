@@ -4,14 +4,19 @@ import httpx
 from config import TELEGRAM_TOKEN, HTTP_PROXY, HTTPS_PROXY, SSL_VERIFY
 
 
-c = httpx.Client(
-    base_url=f"https://api.telegram.org/bot{TELEGRAM_TOKEN}",
-    proxies={
-        "http://": HTTP_PROXY,
-        "https://": HTTPS_PROXY,
-    },
-    verify=SSL_VERIFY,
-)
+if HTTP_PROXY and HTTPS_PROXY:
+    c = httpx.Client(
+        base_url=f"https://api.telegram.org/bot{TELEGRAM_TOKEN}",
+        proxies={
+            "http://": HTTP_PROXY,
+            "https://": HTTPS_PROXY,
+        },
+        verify=SSL_VERIFY,
+    )
+else:
+    c = httpx.Client(
+        base_url=f"https://api.telegram.org/bot{TELEGRAM_TOKEN}", verify=SSL_VERIFY
+    )
 
 
 def get_updates(offset: int = None) -> dict:
