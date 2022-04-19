@@ -3,12 +3,19 @@ rss_groups:
     美团技术团队: https://tech.meituan.com/feed/
   IT: &it
     36氪: https://36kr.com/feed
+    cnBeta: https://rss.cnbeta.com/
   博客: &blog
     月光博客: https://www.williamlong.info/rss.xml
     阮一峰的网络日志: https://www.ruanyifeng.com/blog/atom.xml
+  新闻: &new
+    FT中文网: http://www.ftchinese.com/rss/news
+  综合: &other
+    少数派: https://sspai.com/feed
 
 chat_ids:
   383054885:
     <<: *tech
     <<: *it
     <<: *blog
+    <<: *new
+    <<: *other
