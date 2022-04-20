@@ -2,10 +2,15 @@ rss_groups:
   技术: &tech
     美团技术团队: https://tech.meituan.com/feed/
   IT: &it
-    36氪: https://36kr.com/feed
+    36氪: 
+      url: https://36kr.com/feed
+      fold_regex:
+        - (http|https):\/\/36kr\.com\/newsflashes\/\d+
     cnBeta: https://rss.cnbeta.com/
   博客: &blog
-    月光博客: https://www.williamlong.info/rss.xml
+    月光博客:
+      url: https://www.williamlong.info/rss.xml
+      fold: true
     阮一峰的网络日志: https://www.ruanyifeng.com/blog/atom.xml
   新闻: &new
     FT中文网: http://www.ftchinese.com/rss/news

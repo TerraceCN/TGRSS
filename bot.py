@@ -32,7 +32,7 @@ def get_updates(offset: int = None) -> dict:
 
 
 def send_message(
-    chat_id: int, text: str, parse_mode: str = "markdown", disable_notification: bool = False
+    chat_id: int, text: str, *args, **kwargs
 ) -> dict:
     """
     Send message.
@@ -40,10 +40,9 @@ def send_message(
     url = "/sendMessage"
     params = {
         "chat_id": chat_id,
-        "text": text,
-        "parse_mode": parse_mode,
-        "disable_notification": disable_notification,
+        "text": text
     }
-    resp = c.get(url, params=params)
+    params.update(kwargs)
+    resp = c.post(url, json=params)
     resp.raise_for_status()
     return resp.json()

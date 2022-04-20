@@ -2,7 +2,7 @@
 import httpx
 from lxml import etree
 
-from config import HTTP_PROXY, HTTPS_PROXY
+from config import HTTP_PROXY, HTTPS_PROXY, SSL_VERIFY
 
 
 def get_feeds(url: str) -> list:
@@ -10,9 +10,9 @@ def get_feeds(url: str) -> list:
     Get feeds from RSS.
     """
     if HTTP_PROXY and HTTPS_PROXY:
-        resp = httpx.get(url, proxies={"http": HTTP_PROXY, "https": HTTPS_PROXY})
+        resp = httpx.get(url, proxies={"http://": HTTP_PROXY, "https://": HTTPS_PROXY}, verify=SSL_VERIFY)
     else:
-        resp = httpx.get(url)
+        resp = httpx.get(url, verify=SSL_VERIFY)
     resp.raise_for_status()
     xml = etree.fromstring(resp.content)
     feeds = []
